@@ -9,11 +9,8 @@ namespace Employ2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
-
             Readme read = new Readme();
             read.Execute();
-
         }
     }
     class Readme
