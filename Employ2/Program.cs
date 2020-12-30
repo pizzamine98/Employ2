@@ -10,16 +10,11 @@ namespace Employ2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            Readme read = new Readme();
-            read.Execute();
-        }
-    }
-    class Readme
-    {
-        public List<Employee> employees;
-        public void Execute()
-        {
-            employees = new List<Employee>();
+           List<Employee> remove, employees;
+       string[] parts;
+        string command, path, json;
+         bool inloop;
+        employees = new List<Employee>();
             inloop = true;
             while (inloop)
             {
@@ -36,63 +31,67 @@ namespace Employ2
                     Console.WriteLine("Enter \"write\" to write file");
                     Console.WriteLine("Enter \"load\" to load file");
                     Console.WriteLine("Enter \"setpath,*filepath*\" to set filepath ");
-                } else if (command.StartsWith("add"))
+                }
+                else if (command.StartsWith("add"))
                 {
                     employees.Add(new Employee() { Name = parts[1], Jobtitle = parts[2] });
-                } else if (command.StartsWith("delete"))
+                }
+                else if (command.StartsWith("delete"))
                 {
                     remove = new List<Employee>();
-                    foreach(var e in employees)
+                    foreach (var e in employees)
                     {
-                        if(e.Name == parts[1])
+                        if (e.Name == parts[1])
                         {
                             remove.Add(e);
                         }
                     }
-                    foreach(var e in remove)
+                    foreach (var e in remove)
                     {
                         employees.Remove(e);
                     }
-                } else if (command.StartsWith("modify"))
+                }
+                else if (command.StartsWith("modify"))
                 {
-                    foreach(var e in employees)
+                    foreach (var e in employees)
                     {
-                        if(e.Name == parts[1])
+                        if (e.Name == parts[1])
                         {
                             e.Name = parts[2];
                             e.Jobtitle = parts[3];
                         }
                     }
-                } else if (command.Equals("printout"))
+                }
+                else if (command.Equals("printout"))
                 {
-                    foreach(var e in employees)
+                    foreach (var e in employees)
                     {
                         Console.WriteLine(e.Name + "," + e.Jobtitle);
                     }
-                } else if (command.Equals("exit"))
+                }
+                else if (command.Equals("exit"))
                 {
                     inloop = false;
-                } else if (command.StartsWith("write"))
+                }
+                else if (command.StartsWith("write"))
                 {
                     json = JsonConvert.SerializeObject(employees);
-                    System.IO.File.WriteAllText(path,json);
-                } else if (command.StartsWith("load"))
+                    System.IO.File.WriteAllText(path, json);
+                }
+                else if (command.StartsWith("load"))
                 {
                     using (StreamReader r = new StreamReader(path))
                     {
                         json = r.ReadToEnd();
                         employees = JsonConvert.DeserializeObject<List<Employee>>(json);
                     }
-                } else if (command.StartsWith("set"))
+                }
+                else if (command.StartsWith("set"))
                 {
                     path = @"" + parts[1];
                 }
             }
         }
-        private List<Employee> remove;
-        private string[] parts;
-        private string command,path,json;
-        private bool inloop; 
     }
     class Employee
     {
