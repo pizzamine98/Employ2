@@ -9,13 +9,25 @@ namespace Employ2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-           List<Employee> remove, employees;
-       string[] parts;
-        string command, path, json;
-         bool inloop;
-        employees = new List<Employee>();
+            Readme read = new Readme();
+            read.Execute();
+        }
+    }
+    class Readme
+    {
+        public List<Employee> employees;
+        public Help help;
+        public ReadWrite rws;
+        public Remover remove;
+        public Change change;
+        public void Execute()
+        {
+            employees = new List<Employee>();
             inloop = true;
+            help = new Help();
+            rws = new ReadWrite();
+            remove = new Remover();
+            change = new Change();
             while (inloop)
             {
                 Console.WriteLine("Enter command below(or \"help\" for list of commands");
@@ -23,79 +35,45 @@ namespace Employ2
                 parts = command.Split(",");
                 if (command.Equals("help"))
                 {
-                    Console.WriteLine("Enter \"exit\" to exit program");
-                    Console.WriteLine("Enter \"add,*name*,*jobtitle*\" to add employee");
-                    Console.WriteLine("Enter \"delete,*name*\" to delete employee");
-                    Console.WriteLine("Enter \"modify,*name*,*newname*,*newjobtitle*\" to modify employee");
-                    Console.WriteLine("Enter \"printout\" to printout employees");
-                    Console.WriteLine("Enter \"write\" to write file");
-                    Console.WriteLine("Enter \"load\" to load file");
-                    Console.WriteLine("Enter \"setpath,*filepath*\" to set filepath ");
-                }
-                else if (command.StartsWith("add"))
+                    help.PrintHelp();
+                } else if (command.StartsWith("add"))
                 {
-                    employees.Add(new Employee() { Name = parts[1], Jobtitle = parts[2] });
-                }
-                else if (command.StartsWith("delete"))
+                    change.AddEmployee(parts, employees);
+                } else if (command.StartsWith("delete"))
                 {
-                    remove = new List<Employee>();
-                    foreach (var e in employees)
-                    {
-                        if (e.Name == parts[1])
-                        {
-                            remove.Add(e);
-                        }
-                    }
-                    foreach (var e in remove)
-                    {
-                        employees.Remove(e);
-                    }
-                }
-                else if (command.StartsWith("modify"))
+                    remove.RemoveEmployee(parts, employees);
+                } else if (command.StartsWith("modify"))
                 {
-                    foreach (var e in employees)
-                    {
-                        if (e.Name == parts[1])
-                        {
-                            e.Name = parts[2];
-                            e.Jobtitle = parts[3];
-                        }
-                    }
-                }
-                else if (command.Equals("printout"))
+                    change.ModifyEmployee(parts, employees);
+                } else if (command.Equals("printout"))
                 {
-                    foreach (var e in employees)
-                    {
-                        Console.WriteLine(e.Name + "," + e.Jobtitle);
-                    }
-                }
-                else if (command.Equals("exit"))
+                    help.PrintEmployees(employees);
+                } else if (command.Equals("exit"))
                 {
                     inloop = false;
-                }
-                else if (command.StartsWith("write"))
+                } else if (command.StartsWith("write"))
                 {
-                    json = JsonConvert.SerializeObject(employees);
-                    System.IO.File.WriteAllText(path, json);
-                }
-                else if (command.StartsWith("load"))
+                    rws.emps = employees;
+                    rws.Write();
+                    employees = rws.emps;
+                } else if (command.StartsWith("load"))
                 {
-                    using (StreamReader r = new StreamReader(path))
-                    {
-                        json = r.ReadToEnd();
-                        employees = JsonConvert.DeserializeObject<List<Employee>>(json);
-                    }
-                }
-                else if (command.StartsWith("set"))
+                    rws.emps = employees;
+                    rws.Read();
+                    employees = rws.emps;
+                } else if (command.StartsWith("setpath"))
                 {
-                    path = @"" + parts[1];
+                    rws.emps = employees;
+                    rws.path = @"" + parts[1];
+                    rws.Read();
+                    employees = rws.emps;
                 }
             }
         }
+        private string[] parts;
+        private string command;
+        private bool inloop; 
     }
-    class Employee
-    {
-        public string Name, Jobtitle;
-    }
+    
 
 }
