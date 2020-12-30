@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-
+using Newtonsoft.Json;
 namespace Employ2
 {
     class Program
@@ -24,6 +25,7 @@ namespace Employ2
             {
                 Console.WriteLine("Enter command below(or \"help\" for list of commands");
                 command = Console.ReadLine();
+                parts = command.Split(",");
                 if (command.Equals("help"))
                 {
                     Console.WriteLine("Enter \"exit\" to exit program");
@@ -31,13 +33,15 @@ namespace Employ2
                     Console.WriteLine("Enter \"delete,*name*\" to delete employee");
                     Console.WriteLine("Enter \"modify,*name*,*newname*,*newjobtitle*\" to modify employee");
                     Console.WriteLine("Enter \"printout\" to printout employees");
+                    Console.WriteLine("Enter \"write,*filepath*\" to write file");
+                    Console.WriteLine("Enter \"load,*filepath*\" to load file");
                 } else if (command.StartsWith("add"))
                 {
-                    parts = command.Split(",");
+                    
                     employees.Add(new Employee() { Name = parts[1], Jobtitle = parts[2] });
                 } else if (command.StartsWith("delete"))
                 {
-                    parts = command.Split(",");
+                   
                     remove = new List<Employee>();
                     foreach(var e in employees)
                     {
@@ -55,7 +59,7 @@ namespace Employ2
 
                 } else if (command.StartsWith("modify"))
                 {
-                    parts = command.Split(",");
+               
                     foreach(var e in employees)
                     {
                         if(e.Name == parts[1])
@@ -73,12 +77,26 @@ namespace Employ2
                 } else if (command.Equals("exit"))
                 {
                     inloop = false;
+                } else if (command.StartsWith("write"))
+                {
+                    path = @"" + parts[1];
+                    json = JsonConvert.SerializeObject(employees);
+                    Console.WriteLine(json);
+                    System.IO.File.WriteAllText(path,json);
+                } else if (command.StartsWith("load"))
+                {
+                    path = @"" + parts[1];
+                    using (StreamReader r = new StreamReader(path))
+                    {
+                        json = r.ReadToEnd();
+                        employees = JsonConvert.DeserializeObject<List<Employee>>(json);
+                    }
                 }
             }
         }
         private List<Employee> remove;
         private string[] parts;
-        private string command;
+        private string command,path,json;
         private bool inloop; 
     }
     class Employee

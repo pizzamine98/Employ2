@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "F01vhvFTqMrrucdw3gCouApUsS0TzuBxfOl0KGB5xUlqmZeSbyCBpW/R6lABFtj0PaZsaFLH0cC1U1Q+ZAm01Q==",
+  "dgSpecHash": "5GlpqonHt49+adeu6g+4ZoQ17DMb1Zt3mxifYx4uZ5T8a+4HtuI9clKey8NCCD0k5n8/DYWWqnKXY+xUUHCCvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pizzamine98\\source\\repos\\pizzamine98\\Employ2\\Employ2\\Employ2.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Pizzamine98\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
