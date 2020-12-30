@@ -37,11 +37,9 @@ namespace Employ2
                     Console.WriteLine("Enter \"load,*filepath*\" to load file");
                 } else if (command.StartsWith("add"))
                 {
-                    
                     employees.Add(new Employee() { Name = parts[1], Jobtitle = parts[2] });
                 } else if (command.StartsWith("delete"))
                 {
-                   
                     remove = new List<Employee>();
                     foreach(var e in employees)
                     {
@@ -54,12 +52,8 @@ namespace Employ2
                     {
                         employees.Remove(e);
                     }
-                    
-                    
-
                 } else if (command.StartsWith("modify"))
                 {
-               
                     foreach(var e in employees)
                     {
                         if(e.Name == parts[1])
