@@ -1,0 +1,13 @@
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.exe
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.deps.json
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.runtimeconfig.json
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.runtimeconfig.dev.json
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.dll
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\bin\Debug\netcoreapp3.1\Employ2.pdb
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.csprojAssemblyReference.cache
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.csproj.CoreCompileInputs.cache
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.AssemblyInfoInputs.cache
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.AssemblyInfo.cs
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.dll
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.pdb
+C:\Users\Pizzamine98\source\repos\Employ2\Employ2\obj\Debug\netcoreapp3.1\Employ2.genruntimeconfig.cache
