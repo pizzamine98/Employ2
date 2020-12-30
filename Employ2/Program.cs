@@ -33,8 +33,9 @@ namespace Employ2
                     Console.WriteLine("Enter \"delete,*name*\" to delete employee");
                     Console.WriteLine("Enter \"modify,*name*,*newname*,*newjobtitle*\" to modify employee");
                     Console.WriteLine("Enter \"printout\" to printout employees");
-                    Console.WriteLine("Enter \"write,*filepath*\" to write file");
-                    Console.WriteLine("Enter \"load,*filepath*\" to load file");
+                    Console.WriteLine("Enter \"write\" to write file");
+                    Console.WriteLine("Enter \"load\" to load file");
+                    Console.WriteLine("Enter \"setpath,*filepath*\" to set filepath ");
                 } else if (command.StartsWith("add"))
                 {
                     employees.Add(new Employee() { Name = parts[1], Jobtitle = parts[2] });
@@ -73,18 +74,18 @@ namespace Employ2
                     inloop = false;
                 } else if (command.StartsWith("write"))
                 {
-                    path = @"" + parts[1];
                     json = JsonConvert.SerializeObject(employees);
-                    Console.WriteLine(json);
                     System.IO.File.WriteAllText(path,json);
                 } else if (command.StartsWith("load"))
                 {
-                    path = @"" + parts[1];
                     using (StreamReader r = new StreamReader(path))
                     {
                         json = r.ReadToEnd();
                         employees = JsonConvert.DeserializeObject<List<Employee>>(json);
                     }
+                } else if (command.StartsWith("set"))
+                {
+                    path = @"" + parts[1];
                 }
             }
         }
